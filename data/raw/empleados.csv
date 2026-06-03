@@ -1,0 +1,31 @@
+﻿empleado_id,nombre,apellido,sexo,fecha_nacimiento,fecha_alta,departamento_id,departamento,puesto,salario,estado
+1,Obdulia,Sans,Mujer,1982-11-09,2013-09-20,1,Dirección,Director General,58800.23,Activo
+2,Rosaura,Diez,Mujer,1984-07-14,2012-10-05,1,Dirección,Director General,52926.77,Activo
+3,Albino,Jiménez,Hombre,1975-03-15,2025-07-14,2,RRHH,Técnico RRHH,26050.59,Activo
+4,Abraham,Corominas,Hombre,2003-08-31,2012-01-07,2,RRHH,Técnico RRHH,27935.29,Activo
+5,Carmen,Gutierrez,Mujer,1976-01-03,2012-01-05,3,Contabilidad,Contable,30484.24,Activo
+6,Jesús,Pedraza,Hombre,1997-02-17,2018-11-21,3,Contabilidad,Contable,28473.72,Activo
+7,Berta,Coloma,Mujer,1992-09-06,2019-06-26,3,Contabilidad,Contable,30297.66,Activo
+8,Casandra,Goñi,Mujer,2005-01-04,2016-09-05,4,Ventas,Comercial,28702.49,Activo
+9,Ainoa,Maldonado,Mujer,1990-09-06,2017-03-31,4,Ventas,Comercial,24630.4,Activo
+10,Reyes,Montalbán,Hombre,1968-07-14,2018-10-09,4,Ventas,Comercial,26300.16,Activo
+11,Reyna,Benitez,Mujer,1984-04-23,2025-07-22,4,Ventas,Comercial,32483.59,Activo
+12,Emigdio,Miranda,Hombre,1971-06-03,2025-01-09,4,Ventas,Comercial,36100.25,Activo
+13,Pepe,Gutierrez,Hombre,1977-07-20,2017-07-08,4,Ventas,Comercial,38439.21,Activo
+14,Marta,Peral,Mujer,1974-01-14,2011-12-27,4,Ventas,Comercial,30788.8,Activo
+15,León,Fiol,Hombre,1974-10-15,2021-05-25,4,Ventas,Comercial,38311.9,Activo
+16,Joaquín,Mesa,Hombre,1989-05-23,2023-07-01,4,Ventas,Comercial,28492.97,Activo
+17,Elisa,Ródenas,Mujer,1972-10-13,2015-07-21,4,Ventas,Comercial,27500.96,Activo
+18,Eliseo,Torrecilla,Hombre,2001-09-21,2023-11-30,5,Distribución,Repartidor,26085.09,Activo
+19,Claudia,Font,Mujer,1988-07-24,2016-06-05,5,Distribución,Repartidor,29084.94,Activo
+20,Dolores,Granados,Mujer,1980-04-14,2014-07-26,5,Distribución,Repartidor,24348.51,Activo
+21,Donato,Talavera,Hombre,1997-02-05,2018-05-29,5,Distribución,Repartidor,22636.68,Activo
+22,Soraya,Otero,Mujer,1985-09-09,2025-06-19,5,Distribución,Repartidor,22590.3,Activo
+23,Noé,Bartolomé,Hombre,2001-05-22,2023-09-23,5,Distribución,Repartidor,25657.61,Activo
+24,Antonia,Tomas,Mujer,2002-08-17,2015-03-30,5,Distribución,Repartidor,28467.54,Activo
+25,Bruno,Badía,Hombre,1997-12-20,2011-12-11,5,Distribución,Repartidor,24869.41,Activo
+26,América,Pardo,Mujer,1989-04-12,2018-05-25,5,Distribución,Repartidor,21490.71,Activo
+27,Damián,Salcedo,Hombre,1974-06-20,2024-03-26,5,Distribución,Repartidor,26714.22,Activo
+28,Juan Luis,López,Hombre,1980-10-02,2024-12-23,6,Almacén,Mozo de almacén,22407.65,Activo
+29,Saturnino,Ortega,Hombre,2005-04-23,2020-09-19,6,Almacén,Mozo de almacén,24760.77,Activo
+30,Vilma,Cámara,Mujer,1991-08-21,2024-06-12,6,Almacén,Mozo de almacén,24358.72,Baja
