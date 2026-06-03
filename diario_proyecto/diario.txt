@@ -1,40 +1,17 @@
-# Modelo de Datos v1
+-Hemos estado pensando varios modelos de como hacer este proyecto.
 
-## Descripción del proyecto
+-Después de barajar varias opciones, hemos optado por hacer un BI de una empresa de snaks.
+Objetivo de esta fase
+No vamos a programar nada todavía.
+Vamos a crear el Diccionario de Datos v1.0, que será el documento base de todo el proyecto:
+•	CSV iniciales 
+•	PostgreSQL 
+•	ETL con Pandas 
+•	Dashboard Dash 
+•	KPIs 
+•	Automatizaciones n8n 
 
-Tras analizar varias alternativas para el proyecto, se decidió desarrollar una plataforma de Business Intelligence para una distribuidora de snacks.
-
-El objetivo es construir un sistema de análisis empresarial capaz de proporcionar información sobre ventas, clientes, empleados, productividad y absentismo mediante un dashboard interactivo desarrollado con Python.
-
-La solución estará compuesta por:
-
-- Archivos CSV para la generación inicial de datos.
-- Procesos ETL desarrollados con Pandas.
-- Base de datos PostgreSQL.
-- Dashboard interactivo con Dash y Plotly.
-- Automatizaciones mediante n8n.
-
-## Alcance de la primera versión
-
-La primera versión del proyecto permitirá analizar:
-
-- Ventas.
-- Clientes.
-- Productos.
-- Empleados.
-- Productividad.
-- Ausencias.
-
-Quedan fuera del MVP:
-
-- Vehículos.
-- Rutas de reparto.
-- Gestión de stock.
-- Compras a proveedores.
-
-Estas funcionalidades podrán incorporarse en futuras versiones.
-
-## Entidades definitivas del MVP
+-Entidades definitivas del MVP
 1. Departamentos
 Representa la estructura de la empresa.
 Campo	Tipo	Descripción
@@ -164,7 +141,7 @@ ventas_generadas	decimal
 horas_trabajadas	decimal
 
 
-## KPIs que podremos construir
+-KPIs que podremos construir
 Dirección
 •	Facturación total 
 •	Beneficio total 
@@ -188,8 +165,8 @@ Productos
 •	Productos con menor rotación 
 ________________________________________
 
-
-## Estructura de carpetas recomendada
+-vamos a utiliar la siguiente estructura
+Estructura de carpetas recomendada
 Desde el principio.
 proyecto_bi_distribuidora/
 
