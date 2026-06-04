@@ -231,7 +231,7 @@ for cliente_id in range(1, 2001):
     }
 
     clientes.append(cliente)
-    
+
 df_clientes = pd.DataFrame(clientes)
 
 df_clientes.to_csv(
@@ -260,4 +260,160 @@ print("\nClientes por zona:")
 print(
     df_clientes["nombre_zona"]
     .value_counts()
+)
+
+
+# ------------------
+# PRODUCTOS
+# ------------------
+
+productos = []
+
+catalogo_productos = {
+    "Pipas": [
+        "Pipas Original",
+        "Pipas Tijuana",
+        "Pipas Agua Sal",
+        "Pipas XXL",
+        "Pipas Gigantes"
+    ],
+
+    "Frutos Secos": [
+        "Almendras",
+        "Cacahuetes",
+        "Anacardos",
+        "Pistachos",
+        "Avellanas",
+        "Nueces"
+    ],
+
+    "Snacks": [
+        "Gublins Jamón",
+        "Gublins Queso",
+        "Papa Delta Original",
+        "Papa Delta Campesinas",
+        "Papa Delta Barbacoa",
+        "Snack Mix"
+    ],
+
+    "MisterCorn": [
+        "MisterCorn Original",
+        "MisterCorn BBQ",
+        "MisterCorn Picante",
+        "MisterCorn Queso"
+    ],
+
+    "Mix": [
+        "Cocktail",
+        "Mix Energy",
+        "Mix Premium",
+        "Mix Frutos Secos"
+    ],
+
+    "Palomitas": [
+        "Palomitas Mantequilla",
+        "Palomitas Dulces",
+        "Palomitas Saladas"
+    ]
+}
+
+popularidades = {
+    "Pipas Original": 10,
+    "Pipas Tijuana": 9,
+    "Pipas Agua Sal": 8,
+
+    "MisterCorn Original": 8,
+    "MisterCorn BBQ": 7,
+
+    "Cocktail": 6,
+
+    "Palomitas Dulces": 3
+}
+
+temporadas = {
+    "Pipas": "Todo el año",
+    "Frutos Secos": "Invierno",
+    "Snacks": "Todo el año",
+    "MisterCorn": "Todo el año",
+    "Mix": "Navidad",
+    "Palomitas": "Verano"
+}
+
+rangos_coste = {
+    "Pipas": (0.60, 1.20),
+    "Frutos Secos": (1.00, 2.50),
+    "Snacks": (0.70, 1.80),
+    "MisterCorn": (0.80, 1.60),
+    "Mix": (1.20, 2.80),
+    "Palomitas": (0.50, 1.30)
+}
+
+producto_id = 1
+
+for categoria, lista_productos in catalogo_productos.items():
+
+    for nombre_producto in lista_productos:
+
+        coste_min, coste_max = rangos_coste[categoria]
+
+        coste = round(
+            random.uniform(coste_min, coste_max),
+            2
+        )
+
+        precio_venta = round(
+            coste * random.uniform(1.6, 2.8),
+            2
+        )
+
+        margen_bruto_pct = round(
+            ((precio_venta - coste) / precio_venta) * 100,
+            2
+        )
+
+        popularidad = popularidades.get(
+            nombre_producto,
+            5
+        )
+
+        producto = {
+    "producto_id": producto_id,
+    "nombre_producto": nombre_producto,
+    "categoria": categoria,
+    "marca": "Grefusa",
+    "coste": coste,
+    "precio_venta": precio_venta,
+    "margen_bruto_pct": margen_bruto_pct,
+    "popularidad": popularidad,
+    "temporada_fuerte": temporadas[categoria]
+}
+
+        productos.append(producto)
+
+        producto_id += 1
+
+df_productos = pd.DataFrame(productos)
+
+df_productos.to_csv(
+    RUTA_RAW / "productos.csv",
+    index=False,
+    encoding="utf-8-sig"
+)
+
+print("productos.csv generado")
+print(df_productos.head())
+
+print("\nProductos por categoría:")
+print(
+    df_productos["categoria"]
+    .value_counts()
+)
+
+print(
+    df_productos[
+        ["nombre_producto",
+         "coste",
+         "precio_venta",
+         "margen_bruto_pct"]
+    ]
 )

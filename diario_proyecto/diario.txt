@@ -1,189 +1,178 @@
--Hemos estado pensando varios modelos de como hacer este proyecto.
+02/06/2026
 
--Después de barajar varias opciones, hemos optado por hacer un BI de una empresa de snaks.
-Objetivo de esta fase
-No vamos a programar nada todavía.
-Vamos a crear el Diccionario de Datos v1.0, que será el documento base de todo el proyecto:
-•	CSV iniciales 
-•	PostgreSQL 
-•	ETL con Pandas 
-•	Dashboard Dash 
-•	KPIs 
-•	Automatizaciones n8n 
+Objetivo:
+Definir la idea principal del proyecto y su alcance inicial.
 
--Entidades definitivas del MVP
-1. Departamentos
-Representa la estructura de la empresa.
-Campo	Tipo	Descripción
-departamento_id	int	Identificador
-nombre_departamento	string	Nombre
-responsable	string	Responsable
+Trabajo realizado:
+- Se han estudiado diferentes alternativas para el proyecto.
+- Tras analizar varias opciones, se decide desarrollar una plataforma de Business Intelligence para una distribuidora de snacks.
+- Se define el alcance del MVP (Producto Mínimo Viable).
+
+Entidades definidas:
+- Departamentos
+- Empleados
+- Clientes
+- Productos
+- Fechas
+- Ventas
+- Ausencias
+- Productividad
+
+KPIs definidos:
+Dirección:
+- Facturación total
+- Beneficio total
+- Margen %
+- Clientes activos
+
+Comercial:
+- Ventas por comercial
+- Ventas por zona
+- Clientes captados
+
+RRHH:
+- Tasa de absentismo
+- Horas perdidas
+- Productividad por empleado
+- Productividad por departamento
+
+Productos:
+- Top ventas
+- Top rentabilidad
+- Productos con menor rotación
+
+Resultado:
+- Modelo conceptual del proyecto definido.
+- Arquitectura inicial aprobada.
+
+
+03/06/2026
+
+Objetivo:
+Comenzar la generación de datos sintéticos.
+
+Trabajo realizado:
+- Se crea la estructura de carpetas del proyecto.
+- Se crean los archivos CSV iniciales.
+- Se desarrolla el primer script de generación de dimensiones.
+- Se generan correctamente las tablas:
+  - departamentos.csv
+  - zonas.csv
+
+Código implementado:
+
+from pathlib import Path
+
+BASE_DIR = Path(__file__).resolve().parent.parent
+RUTA_RAW = BASE_DIR / "data" / "raw"
+
+Problemas encontrados:
+- Error NameError: Path is not defined.
+
+Solución aplicada:
+- Se añadió la importación:
+  from pathlib import Path
+
+Resultado:
+- Se valida la estructura de rutas del proyecto.
+- Los primeros CSV se generan correctamente.
+
+Objetivo:
+Generar la dimensión de empleados.
+
+Trabajo realizado:
+- Se diseña la estructura de la tabla empleados.
+- Se definen los departamentos de la empresa.
+- Se definen los puestos asociados a cada departamento.
+- Se establecen rangos salariales por puesto.
+- Se comienza la generación automática de empleados mediante Faker.
+
+Resultado:
+- La tabla empleados queda preparada para su generación automática.
+- Se implementa la generación automática de empleados utilizando Faker. 
+Se generan 30 registros distribuidos entre los distintos departamentos de la empresa,
+ incluyendo información de puesto, salario, fecha de alta y datos personales ficticios.
+
+Mejora realizada:
+- Se detecta una inconsistencia entre el sexo generado y los nombres generados por Faker.
+
+Solución:
+- Se modifica el script para generar primero el sexo y posteriormente asignar nombres masculinos o femeninos coherentes.
+
+Resultado:
+- Los datos de empleados mantienen consistencia entre nombre y sexo.
+
+-Decisión de diseño:
+
+Se elimina el campo "ciudad" de la dimensión clientes.
+
+Se incorpora la relación mediante "zona_id" y "nombre_zona", utilizando una tabla de zonas normalizada.
+
+Motivo:
+Permitir futuros análisis geográficos, mapas de calor y segmentación de ventas por zona sin duplicar información.
+
+esto nos ha generado un problema que nos sale otra vez siempre la misma zona con el mismo id
+
+lo hemos solucionado y hemos dado unos prametros +/- realistas sobre las zonas utilizando este Código
+pesos_zonas = [
+    15,  # Madrid Centro
+    12,  # Madrid Norte
+    12,  # Madrid Sur
+    10,  # Madrid Este
+    10,  # Madrid Oeste
+    8,   # Alcobendas
+    8,   # San Sebastián de los Reyes
+    7,   # Getafe
+    7,   # Leganés
+    5,   # Móstoles
+    3,   # Alcorcón
+    3    # Fuenlabrada
+]
+
+- A la hora de general productos.csv corregimos un futuro error y es que cabria la posibilidad de que se creara
+un precio de coste mayor al del precio de venta. Y creemos que eso a no ser que sea una promoción que en estos
+momentos no vamos a contemplar, pero si lo dejamos anotado para un futuro y así también poder ser analizado. 
+Lo hemos corregido con estos dos trozos de código:
+coste = round(
+    random.uniform(0.50, 2.50),
+    2
+)
+precio_venta = round(
+    coste * random.uniform(1.4, 2.8),
+    2
+)
+
+
+[FUTURAS VERSIONES 
+Pendientes futuras versiones:
+- Sistema de promociones.
+- Descuentos por campaña.
+- Estacionalidad de productos.
+- Optimización de rutas.
+- Gestión de stock.]
+
+4/06/2026
+
+-Comenzamos el día generando productos.csv, con lo problemas detectados de ayer y corregidos.
+
+
+-Decisión de modelado:
+
+Se renombra el campo margen_pct a margen_bruto_pct en la dimensión productos.
+
+Además, se decide almacenar los márgenes en formato porcentaje.
+
 Ejemplos:
-Ventas
-Logística
-Almacén
-Administración
-RRHH
-________________________________________
-2. Empleados
-Representa a los trabajadores.
-Campo	Tipo
-empleado_id	int
-nombre	string
-apellido	string
-sexo	string
-fecha_nacimiento	date
-fecha_alta	date
-departamento_id	int
-puesto	string
-salario	decimal
-estado	string
-Estado:
-Activo
-Baja
-Vacaciones
-Puestos:
-Comercial
-Repartidor
-Mozo almacén
-Administrativo
-Supervisor
-________________________________________
-3. Clientes
-Representa a los negocios que compran productos.
-Campo	Tipo
-cliente_id	int
-nombre_cliente	string
-tipo_cliente	string
-zona	string
-ciudad	string
-fecha_alta	date
-Tipos:
-Bar
-Restaurante
-Gasolinera
-Supermercado
-Kiosco
-Tienda
-________________________________________
-4. Productos
-Productos distribuidos.
-Campo	Tipo
-producto_id	int
-nombre_producto	string
-marca	string
-categoria	string
-coste	decimal
-precio_venta	decimal
-Categorías:
-Pipas
-Frutos secos
-Snacks
-Palomitas
-Mix
-________________________________________
-5. Fechas
-Tabla fundamental para BI.
-Campo
-fecha_id
-fecha
-dia
-mes
-nombre_mes
-trimestre
-año
-semana
-dia_semana
-________________________________________
-Tablas de hechos
-Aquí ocurre el negocio.
-________________________________________
-6. Ventas
-Cada fila será un producto vendido.
-Campo	Tipo
-venta_id	int
-fecha_id	int
-cliente_id	int
-producto_id	int
-empleado_id	int
-cantidad	int
-importe	decimal
-beneficio	decimal
-Ejemplo:
-05/03/2025
-Bar Pepe
-Pipas G
-10 cajas
-120 €
-________________________________________
-7. Ausencias
-Campo	Tipo
-ausencia_id	int
-fecha_id	int
-empleado_id	int
-tipo_ausencia	string
-horas_ausencia	decimal
-Tipos:
-Vacaciones
-Baja médica
-Permiso
-Formación
-________________________________________
-8. Productividad
-Aquí mediremos el rendimiento.
-Campo	Tipo
-productividad_id	int
-fecha_id	int
-empleado_id	int
-pedidos_entregados	int
-clientes_visitados	int
-ventas_generadas	decimal
-horas_trabajadas	decimal
 
+58.79 = 58,79 %
+42.15 = 42,15 %
 
--KPIs que podremos construir
-Dirección
-•	Facturación total 
-•	Beneficio total 
-•	Margen % 
-•	Clientes activos 
-________________________________________
-Comercial
-•	Ventas por comercial 
-•	Ventas por zona 
-•	Clientes captados 
-________________________________________
-RRHH
-•	Tasa de absentismo 
-•	Horas perdidas 
-•	Productividad por empleado 
-•	Productividad por departamento 
-________________________________________
-Productos
-•	Top ventas 
-•	Top rentabilidad 
-•	Productos con menor rotación 
-________________________________________
+Motivo:
 
--vamos a utiliar la siguiente estructura
-Estructura de carpetas recomendada
-Desde el principio.
-proyecto_bi_distribuidora/
+Facilitar el análisis posterior en el dashboard y la construcción de KPIs 
+sin necesidad de transformar continuamente los valores.
 
-│
-├── data/
-│   ├── raw/
-│   ├── processed/
-│
-├── dashboard/
-│
-├── etl/
-│
-├── database/
-│
-├── docs/
-│
-├── diario_proyecto/
-│
-└── notebooks/
-________________________________________
+Observación:
+
+Aunque internamente también podría almacenarse como 0.5879, 
+se considera más práctico para el proyecto trabajar directamente con porcentajes.
