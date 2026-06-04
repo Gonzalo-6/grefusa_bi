@@ -1,31 +1,31 @@
 ﻿empleado_id,nombre,apellido,sexo,fecha_nacimiento,fecha_alta,departamento_id,departamento,puesto,salario,estado
-1,Benita,Román,Mujer,1984-12-01,2024-12-18,1,Dirección,Director General,45344.2,Activo
-2,Aurelia,Arellano,Mujer,1999-01-17,2026-03-04,1,Dirección,Director General,46967.99,Activo
-3,Abel,Valderrama,Hombre,1982-07-23,2017-08-04,2,RRHH,Técnico RRHH,27583.79,Activo
-4,Flavio,Pi,Hombre,1995-03-18,2013-04-22,2,RRHH,Técnico RRHH,31241.04,Baja
-5,Nilo,Aller,Hombre,1981-09-17,2017-03-11,3,Contabilidad,Contable,28168.82,Activo
-6,Armida,Ferreras,Mujer,1968-10-12,2025-05-07,3,Contabilidad,Contable,26744.85,Activo
-7,Edgardo,Quintana,Hombre,1989-12-23,2015-03-31,3,Contabilidad,Contable,25746.54,Vacaciones
-8,Antonia,Alfonso,Mujer,1989-10-27,2015-01-29,4,Ventas,Comercial,32675.46,Activo
-9,Charo,Luís,Mujer,1967-02-01,2025-05-06,4,Ventas,Comercial,34517.95,Vacaciones
-10,Amanda,Machado,Mujer,2001-08-06,2020-08-02,4,Ventas,Comercial,28539.08,Activo
-11,Rogelio,Pedrero,Hombre,2004-11-30,2021-03-02,4,Ventas,Comercial,38872.45,Activo
-12,Jordán,Casado,Hombre,1976-06-30,2013-01-01,4,Ventas,Comercial,34804.22,Activo
-13,Celestina,Pablo,Mujer,1998-12-19,2013-06-02,4,Ventas,Comercial,37293.2,Activo
-14,Alicia,Pons,Mujer,1969-04-15,2011-12-25,4,Ventas,Comercial,22464.38,Activo
-15,Andrea,Lillo,Mujer,1990-11-05,2018-07-06,4,Ventas,Comercial,27931.8,Activo
-16,Isidoro,Iniesta,Hombre,1993-04-23,2017-08-12,4,Ventas,Comercial,35134.45,Activo
-17,Custodio,Frías,Hombre,1986-09-04,2021-12-11,4,Ventas,Comercial,28439.75,Activo
-18,Lupe,Nogués,Hombre,1996-09-27,2022-04-27,5,Distribución,Repartidor,29583.31,Activo
-19,Amaya,Pareja,Mujer,2005-01-19,2025-01-02,5,Distribución,Repartidor,25154.14,Activo
-20,Danilo,Seguí,Hombre,1971-10-27,2026-02-24,5,Distribución,Repartidor,28069.17,Activo
-21,Casemiro,Alvarez,Hombre,1986-11-04,2022-05-30,5,Distribución,Repartidor,27351.33,Activo
-22,Saturnino,Calvet,Hombre,1972-10-30,2012-02-24,5,Distribución,Repartidor,26274.67,Activo
-23,Ofelia,Moya,Mujer,1978-05-04,2016-08-07,5,Distribución,Repartidor,29952.17,Activo
-24,Ruperto,Bustos,Hombre,1971-02-02,2025-01-22,5,Distribución,Repartidor,29419.67,Activo
-25,Severino,Lozano,Hombre,1996-11-09,2016-10-24,5,Distribución,Repartidor,23071.52,Activo
-26,Damián,Guzman,Hombre,1996-03-02,2011-10-30,5,Distribución,Repartidor,24552.58,Activo
-27,Gisela,Granados,Mujer,1981-10-27,2019-09-19,5,Distribución,Repartidor,28661.57,Activo
-28,Emilia,Báez,Mujer,1984-01-08,2012-03-02,6,Almacén,Mozo de almacén,25454.13,Activo
-29,David,Bello,Hombre,2000-03-11,2016-12-08,6,Almacén,Mozo de almacén,21783.74,Activo
-30,Flor,Bayón,Mujer,1988-10-02,2012-02-26,6,Almacén,Mozo de almacén,21484.83,Activo
+1,Aurelia,Macías,Mujer,1976-10-03,2019-07-12,1,Dirección,Director General,53824.96,Baja
+2,Donato,Hervás,Hombre,1977-01-29,2014-06-19,1,Dirección,Director General,49677.58,Baja
+3,Modesto,Perelló,Hombre,1990-11-07,2017-05-31,2,RRHH,Técnico RRHH,28245.82,Activo
+4,Pacífica,Quintero,Mujer,1989-10-22,2011-11-20,2,RRHH,Técnico RRHH,27200.31,Activo
+5,Herminia,Dávila,Mujer,1979-02-26,2019-01-12,3,Contabilidad,Contable,31567.18,Activo
+6,Dalila,Bayona,Mujer,1993-08-19,2013-12-24,3,Contabilidad,Contable,24146.89,Activo
+7,Hilda,Albero,Mujer,2000-06-24,2021-11-25,3,Contabilidad,Contable,31292.25,Activo
+8,Begoña,García,Mujer,1994-12-15,2023-04-18,4,Ventas,Comercial,39688.17,Activo
+9,Sosimo,Clemente,Hombre,1996-03-01,2018-11-30,4,Ventas,Comercial,24784.89,Baja
+10,Severino,Canales,Hombre,1995-06-29,2025-04-23,4,Ventas,Comercial,39662.36,Activo
+11,Bautista,Trillo,Hombre,1993-03-04,2018-02-06,4,Ventas,Comercial,31463.29,Activo
+12,Macarena,Tomé,Mujer,1972-02-01,2013-12-24,4,Ventas,Comercial,33303.33,Activo
+13,Cirino,Clavero,Hombre,1970-10-26,2025-02-28,4,Ventas,Comercial,35509.95,Vacaciones
+14,Atilio,Prats,Hombre,1992-12-25,2020-08-13,4,Ventas,Comercial,29355.4,Activo
+15,Macaria,Querol,Mujer,2003-07-09,2018-06-19,4,Ventas,Comercial,34940.29,Activo
+16,Eligia,Castell,Mujer,1977-05-05,2012-04-03,4,Ventas,Comercial,39737.39,Activo
+17,María Carmen,Aramburu,Mujer,1989-09-18,2017-01-21,4,Ventas,Comercial,23048.7,Vacaciones
+18,Nico,Miranda,Hombre,1969-07-28,2015-01-09,5,Distribución,Repartidor,25580.5,Activo
+19,Anastasio,Pastor,Hombre,1967-09-25,2018-01-20,5,Distribución,Repartidor,25399.41,Activo
+20,Irma,Prada,Mujer,1993-01-13,2021-09-19,5,Distribución,Repartidor,27146.7,Baja
+21,Pastora,Hernando,Mujer,1995-01-26,2020-11-28,5,Distribución,Repartidor,28767.85,Activo
+22,Natanael,Muñoz,Hombre,1997-11-28,2019-12-08,5,Distribución,Repartidor,24563.21,Activo
+23,Candelario,Vilaplana,Hombre,1973-05-25,2021-08-02,5,Distribución,Repartidor,22797.36,Activo
+24,Juan Luis,Guijarro,Hombre,1991-01-20,2017-06-09,5,Distribución,Repartidor,29072.72,Activo
+25,Mariano,Rivero,Hombre,1975-11-16,2019-06-02,5,Distribución,Repartidor,29282.74,Activo
+26,Andrés,Noriega,Hombre,1982-02-27,2026-05-21,5,Distribución,Repartidor,21469.91,Activo
+27,Severino,Tamarit,Hombre,1972-10-05,2025-11-05,5,Distribución,Repartidor,24498.59,Activo
+28,Nuria,Moreno,Mujer,2005-11-30,2017-04-14,6,Almacén,Mozo de almacén,24904.37,Activo
+29,Amaro,Rivero,Hombre,1980-03-02,2015-02-05,6,Almacén,Mozo de almacén,24652.96,Activo
+30,Elvira,Ferrández,Mujer,1977-09-27,2020-10-26,6,Almacén,Mozo de almacén,26608.87,Activo

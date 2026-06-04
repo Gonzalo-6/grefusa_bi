@@ -417,3 +417,154 @@ print(
          "margen_bruto_pct"]
     ]
 )
+
+# ------------------
+# FECHAS
+# ------------------
+
+from datetime import timedelta
+
+fechas = []
+
+fecha_inicio = datetime(2021, 1, 1)
+fecha_fin = datetime(2025, 12, 31)
+
+fecha_actual = fecha_inicio
+
+meses = {
+    1: "Enero",
+    2: "Febrero",
+    3: "Marzo",
+    4: "Abril",
+    5: "Mayo",
+    6: "Junio",
+    7: "Julio",
+    8: "Agosto",
+    9: "Septiembre",
+    10: "Octubre",
+    11: "Noviembre",
+    12: "Diciembre"
+}
+
+meses_cortos = {
+    1: "Ene",
+    2: "Feb",
+    3: "Mar",
+    4: "Abr",
+    5: "May",
+    6: "Jun",
+    7: "Jul",
+    8: "Ago",
+    9: "Sep",
+    10: "Oct",
+    11: "Nov",
+    12: "Dic"
+}
+
+dias_semana = {
+    0: "Lunes",
+    1: "Martes",
+    2: "Miércoles",
+    3: "Jueves",
+    4: "Viernes",
+    5: "Sábado",
+    6: "Domingo"
+}
+
+festivos_fijos = [
+    (1, 1),
+    (6, 1),
+    (1, 5),
+    (15, 8),
+    (12, 10),
+    (1, 11),
+    (6, 12),
+    (8, 12),
+    (25, 12)
+]
+
+while fecha_actual <= fecha_fin:
+
+    fecha_id = int(
+        fecha_actual.strftime("%Y%m%d")
+    )
+
+    trimestre = ((fecha_actual.month - 1) // 3) + 1
+
+    es_fin_semana = (
+        "Sí"
+        if fecha_actual.weekday() >= 5
+        else "No"
+    )
+
+    es_festivo = (
+        "Sí"
+        if (
+            fecha_actual.day,
+            fecha_actual.month
+        ) in festivos_fijos
+        else "No"
+    )
+
+    # Vacaciones de empresa:
+    # Del 24 de diciembre al 1 de enero incluidos
+
+    vacaciones_empresa = (
+        (fecha_actual.month == 12 and fecha_actual.day >= 24)
+        or
+        (fecha_actual.month == 1 and fecha_actual.day == 1)
+    )
+
+    if vacaciones_empresa:
+        tipo_dia = "Vacaciones Empresa"
+
+    elif es_festivo == "Sí":
+        tipo_dia = "Festivo"
+
+    elif fecha_actual.weekday() >= 5:
+        tipo_dia = "Fin de semana"
+
+    else:
+        tipo_dia = "Laborable"
+
+    registro = {
+        "fecha_id": fecha_id,
+        "fecha": fecha_actual.date(),
+        "dia": fecha_actual.day,
+        "mes": fecha_actual.month,
+        "nombre_mes": meses[fecha_actual.month],
+        "mes_corto": meses_cortos[fecha_actual.month],
+        "trimestre": trimestre,
+        "año": fecha_actual.year,
+        "semana": fecha_actual.isocalendar().week,
+        "dia_semana": dias_semana[
+            fecha_actual.weekday()
+        ],
+        "es_fin_semana": es_fin_semana,
+        "es_festivo": es_festivo,
+        "tipo_dia": tipo_dia
+    }
+
+    fechas.append(registro)
+
+    fecha_actual += timedelta(days=1)
+
+df_fechas = pd.DataFrame(fechas)
+
+df_fechas.to_csv(
+    RUTA_RAW / "fechas.csv",
+    index=False,
+    encoding="utf-8-sig"
+)
+
+print("fechas.csv generado")
+print(df_fechas.head())
+
+print("\nNúmero de fechas:")
+print(len(df_fechas))
+
+print("\nTipos de día:")
+print(
+    df_fechas["tipo_dia"]
+    .value_counts()
+)

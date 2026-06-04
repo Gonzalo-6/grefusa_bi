@@ -210,3 +210,17 @@ proyecto_bi_distribuidora/
 │
 └── notebooks/
 ________________________________________
+
+
+## tabla productos
+
+Campo	            Tipo	Descripción
+producto_id     	int	    Identificador del producto
+nombre_producto	    string	Nombre comercial
+categoria	        string	Categoría del producto
+marca	            string	Marca
+coste	            decimal	Coste unitario
+precio_venta	    decimal	Precio unitario de venta
+margen_bruto_pct	decimal	Margen bruto expresado en porcentaje (58.79 = 58,79 %)
+popularidad	        int	    Índice relativo de popularidad
+temporada_fuerte	string	Época de mayor demanda
