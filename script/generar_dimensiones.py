@@ -1,5 +1,5 @@
 import random
-
+from datetime import timedelta
 import pandas as pd
 import numpy as np
 from faker import Faker
@@ -422,7 +422,7 @@ print(
 # FECHAS
 # ------------------
 
-from datetime import timedelta
+
 
 fechas = []
 
