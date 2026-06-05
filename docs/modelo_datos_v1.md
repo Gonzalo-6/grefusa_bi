@@ -107,16 +107,19 @@ Mix
 ________________________________________
 5. Fechas
 Tabla fundamental para BI.
-Campo
 fecha_id
 fecha
 dia
 mes
 nombre_mes
+mes_corto
 trimestre
 año
 semana
 dia_semana
+es_fin_semana
+es_festivo
+tipo_dia
 ________________________________________
 Tablas de hechos
 Aquí ocurre el negocio.

@@ -176,3 +176,63 @@ Observación:
 
 Aunque internamente también podría almacenarse como 0.5879, 
 se considera más práctico para el proyecto trabajar directamente con porcentajes.
+
+Mejora aplicada:
+
+Se amplía la dimensión de fechas incorporando la identificación de festivos nacionales y la clasificación de los días en:
+
+- Laborable
+- Fin de semana
+- Festivo
+
+Motivo:
+
+Facilitar futuros análisis de ventas, productividad y ausencias según el tipo de día.
+
+Nueva regla de negocio:
+
+La empresa permanece cerrada desde el 24 de diciembre hasta el 1 de enero, ambos incluidos.
+
+Se incorpora el nuevo tipo de día:
+
+- Vacaciones Empresa
+
+Objetivo:
+
+Reflejar periodos reales de cierre para posteriores análisis de ventas, productividad y ausencias.
+
+Finalización de las dimensiones del proyecto.
+
+Tablas completadas:
+- Departamentos
+- Zonas
+- Empleados
+- Clientes
+- Productos
+- Fechas
+
+Mejoras incorporadas:
+- Zonas con distribución ponderada.
+- Productos con márgenes y popularidad.
+- Calendario con festivos.
+- Calendario con cierre anual de empresa.
+- Clasificación de días laborales, festivos y vacaciones de empresa.
+
+Resultado:
+Se completa la estructura dimensional necesaria para comenzar la generación de tablas de hechos.
+
+
+Se realiza una revisión de las reglas de negocio para la generación de ventas.
+
+Decisiones adoptadas:
+
+- Solo existen ventas en días laborables.
+- Los festivos no generan actividad comercial.
+- El cierre anual de empresa genera cero ventas.
+- Los clientes inactivos dispondrán de fecha de baja.
+- Los productos tendrán diferente peso de ventas según su popularidad.
+- Las campañas navideñas incrementarán determinadas categorías.
+- Las ventas se asociarán exclusivamente a empleados del departamento comercial.
+
+Objetivo:
+Generar un histórico coherente y realista que permita análisis avanzados en el dashboard.

@@ -1,9 +1,8 @@
 import random
-from datetime import timedelta
 import pandas as pd
 import numpy as np
 from faker import Faker
-from datetime import datetime
+from datetime import datetime, timedelta
 from pathlib import Path
 
 # Ruta a data/raw
@@ -213,21 +212,40 @@ for cliente_id in range(1, 2001):
         fake.last_name()
     )
 
+    fecha_alta = fake.date_between(
+        start_date="-10y",
+        end_date="today"
+    )
+
+    activo = random.choices(
+        ["Sí", "No"],
+        weights=[90, 10],
+        k=1
+    )[0]
+
+    # Fecha de baja para clientes inactivos
+
+    if activo == "No":
+
+        fecha_baja = fake.date_between(
+            start_date=fecha_alta,
+            end_date=datetime(2025, 12, 31).date()
+        )
+
+    else:
+
+        fecha_baja = None
+
     cliente = {
         "cliente_id": cliente_id,
         "nombre_cliente": nombre_cliente,
         "tipo_cliente": tipo_cliente,
         "zona_id": zona_id,
         "nombre_zona": nombre_zona,
-        "fecha_alta": fake.date_between(
-            start_date="-10y",
-            end_date="today"
-        ),
-        "activo": random.choices(
-            ["Sí", "No"],
-            weights=[90, 10],
-            k=1
-        )[0]
+        "activo": activo,
+        "fecha_alta": fecha_alta,
+        "fecha_baja": fecha_baja,
+        
     }
 
     clientes.append(cliente)
@@ -243,14 +261,16 @@ df_clientes.to_csv(
 print("clientes.csv generado")
 print(df_clientes.head())
 
-
+print("\nNúmero de clientes:")
 print(len(df_clientes))
 
+print("\nTipos de cliente:")
 print(
     df_clientes["tipo_cliente"]
     .value_counts()
 )
 
+print("\nClientes activos:")
 print(
     df_clientes["activo"]
     .value_counts()
@@ -260,6 +280,13 @@ print("\nClientes por zona:")
 print(
     df_clientes["nombre_zona"]
     .value_counts()
+)
+
+print("\nClientes con fecha de baja:")
+print(
+    df_clientes["fecha_baja"]
+    .notna()
+    .sum()
 )
 
 
