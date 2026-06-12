@@ -181,6 +181,29 @@ df_empleados.to_csv(
     encoding="utf-8-sig"
 )
 
+# ------------------
+# COMERCIALES POR ZONA
+# ------------------
+
+comerciales = df_empleados[
+    df_empleados["puesto"] == "Comercial"
+].reset_index(drop=True)
+
+asignacion_zonas = {
+    1: comerciales.iloc[0]["empleado_id"],   # Madrid Centro
+    2: comerciales.iloc[1]["empleado_id"],   # Madrid Norte
+    3: comerciales.iloc[2]["empleado_id"],   # Madrid Sur
+    4: comerciales.iloc[3]["empleado_id"],   # Madrid Este
+    5: comerciales.iloc[4]["empleado_id"],   # Madrid Oeste
+    6: comerciales.iloc[5]["empleado_id"],   # Alcobendas
+    7: comerciales.iloc[6]["empleado_id"],   # San Sebastián
+    8: comerciales.iloc[7]["empleado_id"],   # Getafe
+    9: comerciales.iloc[7]["empleado_id"],   # Leganés
+    10: comerciales.iloc[8]["empleado_id"],  # Móstoles
+    11: comerciales.iloc[8]["empleado_id"],  # Alcorcón
+    12: comerciales.iloc[9]["empleado_id"]   # Fuenlabrada
+}
+
 print("empleados.csv generado")
 print(df_empleados.head())
 
@@ -200,6 +223,19 @@ for cliente_id in range(1, 2001):
 
     nombre_zona = zonas_madrid[zona_id]
 
+    empleado_id = asignacion_zonas[zona_id]
+
+    comercial = df_empleados.loc[
+         df_empleados["empleado_id"] == empleado_id
+    ].iloc[0]
+
+    nombre_comercial = (
+        comercial["nombre"]
+        + " "
+        + comercial["apellido"]
+    )
+
+
     tipo_cliente = random.choices(
         ["Bar", "Restaurante", "Gasolinera", "Tienda", "Supermercado"],
         weights=[45, 15, 10, 20, 10],
@@ -214,7 +250,7 @@ for cliente_id in range(1, 2001):
 
     fecha_alta = fake.date_between(
         start_date="-10y",
-        end_date="today"
+        end_date=datetime(2025, 12, 31).date()
     )
 
     activo = random.choices(
@@ -240,12 +276,16 @@ for cliente_id in range(1, 2001):
         "cliente_id": cliente_id,
         "nombre_cliente": nombre_cliente,
         "tipo_cliente": tipo_cliente,
+
         "zona_id": zona_id,
         "nombre_zona": nombre_zona,
+
+        "empleado_id": empleado_id,
+        "nombre_comercial": nombre_comercial,
+
         "activo": activo,
         "fecha_alta": fecha_alta,
-        "fecha_baja": fecha_baja,
-        
+        "fecha_baja": fecha_baja
     }
 
     clientes.append(cliente)
@@ -288,7 +328,15 @@ print(
     .notna()
     .sum()
 )
-
+print(
+    df_clientes[
+        [
+            "nombre_cliente",
+            "nombre_zona",
+            "nombre_comercial"
+        ]
+    ].head(20)
+)
 
 # ------------------
 # PRODUCTOS
