@@ -59,6 +59,34 @@ def cliente_puede_comprar(cliente, fecha_pedido):
 
     return fecha_pedido <= fecha_baja
 
+def calcular_peso_producto(producto, fecha_pedido):
+
+    peso = producto["popularidad"]
+
+    mes = fecha_pedido.month
+
+    categoria = producto["categoria"]
+
+    # Verano
+    if mes in [6, 7, 8]:
+
+        if categoria == "Palomitas":
+            peso *= 4
+
+    # Invierno
+    if mes in [12, 1, 2]:
+
+        if categoria == "Frutos Secos":
+            peso *= 4
+
+    # Navidad
+    if mes == 12:
+
+        if categoria == "Mix":
+            peso *= 9
+
+    return peso
+
 # ------------------
 # FILTRAR FECHAS
 # ------------------
@@ -121,7 +149,7 @@ print(
 # CONFIGURACIÓN
 # ------------------
 
-NUM_PEDIDOS_PRUEBA = 10
+NUM_PEDIDOS_PRUEBA = 1000
 
 rangos_cantidad = {
     "Bar": (2, 12),
@@ -158,18 +186,29 @@ for _ in range(NUM_PEDIDOS_PRUEBA):
             cliente,
             fecha_pedido
         ):
+            
             break
 
 
-        num_productos = random.choices(
-                [1, 2, 3, 4, 5, 6],
-            weights=[10, 25, 30, 20, 10, 5],
+
+    num_productos = random.choices(
+        [1, 2, 3, 4, 5, 6],
+        weights=[10, 25, 30, 20, 10, 5],
         k=1
-        )[0]
+    )[0]
+
+    pesos_productos = df_productos.apply(
+        lambda x: calcular_peso_producto(
+            x,
+            fecha_pedido
+        ),
+        axis=1
+    )
 
     productos_pedido = df_productos.sample(
         n=num_productos,
-        replace=False
+        replace=True,
+        weights=pesos_productos
     )
 
     estado_pedido = random.choices(
@@ -253,6 +292,22 @@ for _ in range(NUM_PEDIDOS_PRUEBA):
 
 df_ventas = pd.DataFrame(ventas)
 
+df_ventas["fecha"] = pd.to_datetime(
+    df_ventas["fecha_id"].astype(str),
+    format="%Y%m%d"
+)
+
+df_ventas["mes"] = df_ventas["fecha"].dt.month
+
+df_estacionalidad = df_ventas.merge(
+    df_productos[
+        ["producto_id", "categoria"]
+    ],
+    on="producto_id"
+)
+
+
+
 print("\nVENTAS DE PRUEBA")
 print(df_ventas.head(20))
 
@@ -267,3 +322,25 @@ print(
     df_ventas["estado_pedido"]
     .value_counts()
 )
+
+print("\nProductos seleccionados:")
+
+#print(
+#    df_ventas["producto_id"]
+#   .value_counts()
+#)
+
+print(
+    df_ventas.groupby("producto_id")
+    .size()
+    .sort_values(ascending=False)
+)
+
+print(
+    pd.crosstab(
+        df_estacionalidad["mes"],
+        df_estacionalidad["categoria"]
+    )
+)
+
+ 

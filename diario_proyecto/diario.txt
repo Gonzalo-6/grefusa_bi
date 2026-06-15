@@ -142,6 +142,7 @@ precio_venta = round(
     2
 )
 
+-------
 
 [FUTURAS VERSIONES 
 Pendientes futuras versiones:
@@ -155,6 +156,7 @@ Pendientes futuras versiones:
 
 -Comenzamos el día generando productos.csv, con lo problemas detectados de ayer y corregidos.
 
+--------
 
 -Decisión de modelado:
 
@@ -176,6 +178,8 @@ Observación:
 
 Aunque internamente también podría almacenarse como 0.5879, 
 se considera más práctico para el proyecto trabajar directamente con porcentajes.
+
+--------
 
 Mejora aplicada:
 
@@ -221,6 +225,7 @@ Mejoras incorporadas:
 Resultado:
 Se completa la estructura dimensional necesaria para comenzar la generación de tablas de hechos.
 
+-------
 
 Se realiza una revisión de las reglas de negocio para la generación de ventas.
 
@@ -236,3 +241,230 @@ Decisiones adoptadas:
 
 Objetivo:
 Generar un histórico coherente y realista que permita análisis avanzados en el dashboard.
+
+10/06/2026
+
+Mejora del modelo de clientes.
+
+Durante la revisión de las reglas de negocio previas a la generación de ventas, 
+se detecta que las ventas no deben depender directamente de la disponibilidad de un comercial concreto.
+
+Se decide asignar cada cliente a un comercial responsable mediante los campos:
+
+- empleado_id
+- nombre_comercial
+
+Motivo:
+
+En una distribuidora real los clientes continúan realizando pedidos aunque el comercial habitual 
+se encuentre de baja o vacaciones.
+
+Esta relación permitirá:
+
+- Analizar ventas por comercial.
+- Analizar carteras de clientes.
+- Calcular beneficio por comercial.
+- Estudiar el impacto de ausencias en las ventas.
+- Generar KPIs comerciales más realistas.
+
+Resultado:
+
+Se incorpora una relación permanente Cliente → Comercial antes de comenzar el desarrollo de la tabla Fact_Ventas.
+
+---------
+
+Durante la revisión del modelo comercial se descarta la asignación aleatoria de clientes a comerciales.
+
+Se adopta un modelo territorial.
+
+Cada zona geográfica tendrá un comercial responsable y todos los clientes pertenecientes 
+a dicha zona quedarán asignados a ese comercial.
+
+Motivo:
+
+Reflejar una estructura comercial más realista y facilitar futuros análisis geográficos y de rendimiento comercial.
+
+Beneficios:
+
+- Ventas por zona.
+- Ventas por comercial.
+- Cartera de clientes por comercial.
+- Mapas geográficos.
+- Análisis de cobertura comercial.
+
+
+12/06/2026
+
+Antes de generar la tabla de ventas se revisa el ciclo logístico de la distribuidora.
+
+Se decide incorporar:
+
+- fecha_entrega
+- estado_pedido
+- dias_entrega
+
+Motivo:
+
+Representar de forma más realista el proceso de distribución y permitir futuros análisis logísticos.
+
+Reglas adoptadas:
+
+- La mayoría de pedidos se entregan en un plazo de 1 a 3 días.
+- Se incorpora un pequeño porcentaje de incidencias.
+- Se incorpora un pequeño porcentaje de cancelaciones.
+- No se mantendrán pedidos pendientes en el histórico.
+
+Versiones futuras:
+
+- Gestión de stock.
+- Vehículos y rutas.
+- Facturas.
+- Optimización logística.
+- Predicción de ventas.
+- Automatización con n8n.
+- Integración PostgreSQL.
+
+----------
+
+Resumen:
+
+Diseño de la tabla Fact_Ventas.
+
+Una vez completadas las dimensiones del modelo (Departamentos, Zonas, Empleados, Clientes, Productos y Fechas),
+ se inicia el diseño de la tabla de hechos de ventas.
+
+Decisiones adoptadas:
+
+* Cada fila representará una línea de pedido.
+* Se incorpora un identificador de pedido (pedido_id) para agrupar varias líneas pertenecientes a la misma compra.
+* Cada cliente queda asociado a un comercial responsable según su zona geográfica.
+* Los clientes activos podrán generar ventas durante todo el histórico.
+* Los clientes inactivos únicamente podrán generar ventas hasta su fecha de baja.
+* No se registrarán ventas en fines de semana.
+* No se registrarán ventas en festivos.
+* No se registrarán ventas durante el periodo de cierre anual de empresa.
+
+Diseño logístico:
+
+* Se incorpora fecha_entrega.
+* Se incorpora estado_pedido.
+* Se incorpora dias_entrega.
+
+Estados iniciales:
+
+* Entregado.
+* Incidencia.
+* Cancelado.
+
+Reglas de entrega:
+
+* La mayoría de pedidos se entregarán entre 1 y 3 días.
+* Se simulará un pequeño porcentaje de incidencias.
+* Se simulará un pequeño porcentaje de cancelaciones.
+
+Comportamiento comercial:
+
+* Los productos más populares tendrán mayor probabilidad de venta.
+* Determinadas categorías incrementarán sus ventas en campañas estacionales.
+* La cantidad vendida dependerá del tipo de cliente.
+
+Cantidades por línea de pedido:
+
+* Bar: 2 a 12 cajas.
+* Restaurante: 2 a 10 cajas.
+* Gasolinera: 5 a 20 cajas.
+* Tienda: 4 a 20 cajas.
+* Supermercado: 10 a 50 cajas.
+
+Número de productos por pedido:
+
+* La mayoría de pedidos contendrán entre 2 y 4 productos.
+* Se permitirán pedidos pequeños y pedidos grandes para aumentar el realismo del histórico.
+
+Objetivo:
+
+Construir un histórico de ventas coherente con el funcionamiento real de una distribuidora de snacks 
+y alimentación, permitiendo análisis comerciales, financieros y logísticos de alto valor mediante Power BI, Dash 
+y futuros procesos ETL.
+
+
+----------
+
+Durante el diseño de la tabla de ventas se detecta la necesidad de controlar el ciclo de vida de los clientes.
+
+Se decide mantener la generación de fecha_baja en la dimensión Clientes y trasladar la validación de actividad 
+comercial al proceso de generación de ventas.
+
+Regla adoptada:
+
+* Un cliente activo podrá realizar compras desde su fecha de alta.
+* Un cliente inactivo únicamente podrá generar ventas entre su fecha de alta y su fecha de baja.
+* No podrán existir ventas posteriores a la fecha de baja del cliente.
+
+Esta validación se implementará en el proceso generador de la tabla Fact_Ventas.
+---------
+
+
+Se valida con éxito la primera simulación de pedidos y líneas de venta. 
+La estructura de la tabla Fact_Ventas queda operativa y se inicia la fase de enriquecimiento de reglas 
+de negocio para aumentar el realismo del histórico generado.
+
+---------
+
+15/06/2026
+
+
+Mejora del generador de ventas.
+
+Se implementa una nueva regla de negocio basada en la popularidad de los productos.
+
+Hasta este momento todos los productos tenían la misma probabilidad de aparecer en un pedido, independientemente de su importancia comercial.
+
+A partir de ahora se utilizará el campo "popularidad" definido en la dimensión Productos para ponderar la selección de artículos.
+
+Ejemplos:
+
+* Pipas Original tendrá una frecuencia de venta superior.
+* Pipas Tijuana tendrá una frecuencia de venta alta.
+* MisterCorn Original tendrá una frecuencia de venta media-alta.
+* Productos menos populares seguirán apareciendo, pero con menor frecuencia.
+
+Objetivo:
+
+Simular de forma más realista el comportamiento de compra de los clientes y aproximar el histórico de ventas al comportamiento real de una distribuidora de snacks.
+
+Esta mejora permitirá obtener análisis más fiables sobre:
+
+* Productos más vendidos.
+* Rentabilidad por producto.
+* Rotación de inventario.
+* Participación de cada referencia en la facturación total.
+
+------------
+
+
+Se implementa la ponderación de ventas por popularidad de producto.
+
+Hasta este momento todos los productos tenían la misma probabilidad de aparecer en una venta.
+
+Se modifica el generador para utilizar el atributo "popularidad" definido en la dimensión Productos, 
+permitiendo que las referencias más importantes aparezcan con mayor frecuencia.
+
+Validación realizada:
+
+* Se generan varios miles de líneas de venta.
+* Los productos con popularidad alta aparecen significativamente más veces.
+* Los productos con popularidad baja siguen vendiéndose, aunque con menor frecuencia.
+
+Resultado:
+
+La distribución de ventas se aproxima mejor al comportamiento real de una empresa distribuidora de snacks, 
+permitiendo análisis más fiables sobre productos estrella, rentabilidad y rotación.
+
+------------
+
+Se implementa la primera versión de la estacionalidad de productos. 
+La selección de artículos en los pedidos deja de depender únicamente de la popularidad 
+y pasa a considerar también la época del año. Las categorías Palomitas, 
+Frutos Secos y Mix reciben una ponderación adicional durante sus temporadas fuertes, 
+generando patrones de venta más realistas y permitiendo futuros análisis de campañas y comportamiento estacional.
