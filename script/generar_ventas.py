@@ -59,6 +59,8 @@ def cliente_puede_comprar(cliente, fecha_pedido):
 
     return fecha_pedido <= fecha_baja
 
+
+
 def calcular_peso_producto(producto, fecha_pedido):
 
     peso = producto["popularidad"]
@@ -95,6 +97,21 @@ df_fechas_validas = df_fechas[
     df_fechas["tipo_dia"] == "Laborable"
 ].copy()
 
+# Crecimiento anual
+
+pesos_anio = {
+    2021: 10,
+    2022: 15,
+    2023: 20,
+    2024: 25,
+    2025: 30
+}
+
+df_fechas_validas["peso_anio"] = (
+    df_fechas_validas["año"]
+    .map(pesos_anio)
+)
+
 print(
     "Fechas válidas:",
     len(df_fechas_validas)
@@ -121,7 +138,10 @@ while True:
 
     cliente = df_clientes.sample(1).iloc[0]
 
-    fecha = df_fechas_validas.sample(1).iloc[0]
+    fecha = df_fechas_validas.sample(
+        n=1,
+        weights=df_fechas_validas["peso_anio"]
+    ).iloc[0]
 
     fecha_pedido = pd.to_datetime(
         fecha["fecha"]
@@ -207,7 +227,7 @@ for _ in range(NUM_PEDIDOS_PRUEBA):
 
     productos_pedido = df_productos.sample(
         n=num_productos,
-        replace=True,
+        replace=False,
         weights=pesos_productos
     )
 
@@ -217,11 +237,30 @@ for _ in range(NUM_PEDIDOS_PRUEBA):
         k=1
     )[0]
 
+    if estado_pedido == "Entregado":
+
+        dias_entrega = random.choice([1, 2, 3])
+
+    elif estado_pedido == "Incidencia":
+
+        dias_entrega = random.choice([3, 4, 5])
+
+    else:  # Cancelado
+
+        dias_entrega = None
+
     dias_entrega = random.choice([1, 2, 3])
 
-    fecha_entrega = pd.to_datetime(
-        fecha["fecha"]
-    ) + pd.Timedelta(days=dias_entrega)
+    if estado_pedido == "Cancelado":
+
+        fecha_entrega = None
+
+    else:
+
+        fecha_entrega = (
+            pd.to_datetime(fecha["fecha"])
+            + pd.Timedelta(days=dias_entrega)
+        ).date()
 
     for _, producto in productos_pedido.iterrows():
 
@@ -238,20 +277,28 @@ for _ in range(NUM_PEDIDOS_PRUEBA):
 
         coste_unitario = producto["coste"]
 
-        importe = round(
-            cantidad * precio_unitario,
-            2
-        )
+        if estado_pedido == "Cancelado":
 
-        coste_total = round(
-            cantidad * coste_unitario,
-            2
-        )
+            importe = 0
+            coste_total = 0
+            beneficio = 0
 
-        beneficio = round(
-            importe - coste_total,
-            2
-        )
+        else:
+
+            importe = round(
+                cantidad * precio_unitario,
+                2
+            )
+
+            coste_total = round(
+                cantidad * coste_unitario,
+                2
+            )
+
+            beneficio = round(
+                 importe - coste_total,
+                2
+            )
 
         ventas.append({
 
@@ -261,7 +308,7 @@ for _ in range(NUM_PEDIDOS_PRUEBA):
 
             "fecha_id": fecha["fecha_id"],
 
-            "fecha_entrega": fecha_entrega.date(),
+            "fecha_entrega": fecha_entrega,
 
             "cliente_id": cliente["cliente_id"],
 
@@ -343,4 +390,23 @@ print(
     )
 )
 
- 
+
+
+df_ventas["anio"] = (
+    df_ventas["fecha"]
+    .dt.year
+)
+
+print("\nVentas por año:")
+
+print(
+    df_ventas["anio"]
+    .value_counts()
+    .sort_index()
+)
+
+print(
+    df_ventas.groupby("estado_pedido")[
+        ["importe", "beneficio"]
+    ].sum()
+)

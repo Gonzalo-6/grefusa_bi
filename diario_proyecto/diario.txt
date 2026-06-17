@@ -468,3 +468,49 @@ La selección de artículos en los pedidos deja de depender únicamente de la po
 y pasa a considerar también la época del año. Las categorías Palomitas, 
 Frutos Secos y Mix reciben una ponderación adicional durante sus temporadas fuertes, 
 generando patrones de venta más realistas y permitiendo futuros análisis de campañas y comportamiento estacional.
+
+------------
+
+Se implementa y valida la primera versión del modelo de estacionalidad. 
+Se comprueba mediante análisis mensual que determinadas categorías incrementan significativamente sus ventas 
+durante sus periodos de mayor demanda:
+
+Frutos Secos en invierno.
+Palomitas en verano.
+Mix en Navidad.
+
+La validación confirma que el motor de generación de ventas es capaz de reproducir patrones de consumo estacionales, 
+aportando mayor realismo al histórico generado.
+
+-----------
+
+Se implementa un modelo de crecimiento empresarial para la generación de ventas.
+
+Hasta este momento todos los años tenían la misma probabilidad de generar pedidos. 
+Se modifica la selección de fechas para simular el crecimiento progresivo de la empresa entre 2021 y 2025.
+
+La distribución de pedidos se pondera por año, generando un volumen creciente de ventas conforme avanza el histórico.
+
+Objetivo:
+
+Representar la expansión comercial de la empresa y permitir análisis más realistas sobre evolución de facturación, 
+crecimiento anual, rentabilidad y tendencias temporales.
+
+
+-----------
+
+Validado el modelo de generación de ventas. Se ajustan los parámetros de crecimiento anual y estacionalidad hasta obtener 
+distribuciones realistas. Los resultados muestran una evolución creciente de la empresa entre 2021 y 2025, 
+con variaciones naturales entre ejercicios y patrones de consumo coherentes con la temporada de cada categoría.
+
+
+-----------
+
+17/06/2026
+
+Se mejora el modelo de pedidos incorporando lógica de negocio para estados de pedido. 
+Los pedidos cancelados dejan de generar ingresos y beneficio, mientras que los pedidos 
+con incidencia mantienen facturación pero presentan un comportamiento diferenciado respecto a los entregados. 
+Se valida la correcta generación de importes, beneficios y fechas de entrega.
+
+------------
