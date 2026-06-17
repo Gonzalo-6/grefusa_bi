@@ -153,23 +153,12 @@ while True:
     ):
         break
 
-print("\nCliente prueba:")
-print(cliente)
-
-print(df_clientes.columns.tolist())
-
-print("\nClientes inactivos:")
-
-print(
-    df_clientes["activo"]
-    .value_counts()
-)
 
 # ------------------
 # CONFIGURACIÓN
 # ------------------
 
-NUM_PEDIDOS_PRUEBA = 1000
+NUM_PEDIDOS = 25000
 
 rangos_cantidad = {
     "Bar": (2, 12),
@@ -190,7 +179,7 @@ pedido_id = 100001
 # PEDIDOS DE PRUEBA
 # ------------------
 
-for _ in range(NUM_PEDIDOS_PRUEBA):
+for _ in range(NUM_PEDIDOS):
 
     while True:
 
@@ -249,7 +238,6 @@ for _ in range(NUM_PEDIDOS_PRUEBA):
 
         dias_entrega = None
 
-    dias_entrega = random.choice([1, 2, 3])
 
     if estado_pedido == "Cancelado":
 
@@ -353,60 +341,97 @@ df_estacionalidad = df_ventas.merge(
     on="producto_id"
 )
 
+#------------------
+#GUARDAR RESULTADOS
+#------------------
 
-
-print("\nVENTAS DE PRUEBA")
-print(df_ventas.head(20))
-
-print("\nNúmero de líneas:")
-print(len(df_ventas))
-
-print("\nNúmero de pedidos:")
-print(df_ventas["pedido_id"].nunique())
-
-print("\nEstado pedidos:")
-print(
-    df_ventas["estado_pedido"]
-    .value_counts()
+df_ventas.to_csv(
+    RUTA_RAW / "ventas.csv",
+    index=False,
+    encoding="utf-8-sig"
 )
 
-print("\nProductos seleccionados:")
+#------------------
+#COMPROBACIÓN DE RESULTADOS
+#------------------
+
+#print("\nCliente prueba:")
+#print(cliente)
+
+#print(df_clientes.columns.tolist())
+
+#print("\nClientes inactivos:")
+
+#print(
+#    df_clientes["activo"]
+#    .value_counts()
+#)
+
+
+#print("\nVENTAS DE PRUEBA")
+#print(df_ventas.head(20))
+
+#print("\nNúmero de líneas:")
+#print(len(df_ventas))
+
+#print("\nNúmero de pedidos:")
+#print(df_ventas["pedido_id"].nunique())
+
+#print("\nEstado pedidos:")
+#print(
+#    df_ventas["estado_pedido"]
+#    .value_counts()
+#)
+
+#print("\nProductos seleccionados:")
 
 #print(
 #    df_ventas["producto_id"]
 #   .value_counts()
 #)
 
-print(
-    df_ventas.groupby("producto_id")
-    .size()
-    .sort_values(ascending=False)
-)
+#print(
+#   df_ventas.groupby("producto_id")
+#    .size()
+#    .sort_values(ascending=False)
+#)
 
-print(
-    pd.crosstab(
-        df_estacionalidad["mes"],
-        df_estacionalidad["categoria"]
-    )
-)
+#print(
+#    pd.crosstab(
+#       df_estacionalidad["mes"],
+#        df_estacionalidad["categoria"]
+#    )
+#)
 
 
 
-df_ventas["anio"] = (
-    df_ventas["fecha"]
-    .dt.year
-)
+#df_ventas["anio"] = (
+#    df_ventas["fecha"]
+#    .dt.year
+#)
 
-print("\nVentas por año:")
+#print("\nVentas por año:")
 
-print(
-    df_ventas["anio"]
-    .value_counts()
-    .sort_index()
-)
+#print(
+#    df_ventas["anio"]
+#    .value_counts()
+#    .sort_index()
+#)
 
-print(
-    df_ventas.groupby("estado_pedido")[
-        ["importe", "beneficio"]
-    ].sum()
-)
+#print(
+#    df_ventas.groupby("estado_pedido")[
+#        ["importe", "beneficio"]
+#    ].sum()
+#)
+
+#print(
+#    df_ventas.groupby("estado_pedido")[
+#        "dias_entrega"
+#    ].describe()
+
+#)
+
+
+print("ventas.csv generado")
+print("Número de líneas:", len(df_ventas))
+print("Número de pedidos:", df_ventas["pedido_id"].nunique())
