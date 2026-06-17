@@ -8,6 +8,7 @@ from pathlib import Path
 # Ruta a data/raw
 BASE_DIR = Path(__file__).resolve().parent.parent
 RUTA_RAW = BASE_DIR / "data" / "raw"
+RUTA_PROCESSED = BASE_DIR / "data" / "processed"
 
 # ------------------
 # DEPARTAMENTOS
