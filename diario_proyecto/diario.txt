@@ -514,3 +514,84 @@ con incidencia mantienen facturación pero presentan un comportamiento diferenci
 Se valida la correcta generación de importes, beneficios y fechas de entrega.
 
 ------------
+
+Finalizada la primera versión completa del generador de ventas.
+
+Se implementan y validan las siguientes reglas de negocio:
+
+* Clientes con fecha de alta y fecha de baja.
+* Los clientes solo generan pedidos durante su periodo de actividad.
+* Asignación de comerciales por zona geográfica.
+* Pedidos con múltiples líneas de producto.
+* Productos con popularidad diferenciada.
+* Estacionalidad de categorías:
+
+  * Frutos Secos en invierno.
+  * Palomitas en verano.
+  * Mix en Navidad.
+* Crecimiento progresivo de la empresa entre 2021 y 2025.
+* Estados de pedido:
+
+  * Entregado.
+  * Incidencia.
+  * Cancelado.
+* Los pedidos cancelados no generan ingresos ni beneficio.
+* Entregas entre 1 y 3 días para pedidos entregados.
+* Entregas entre 3 y 5 días para pedidos con incidencia.
+* Calendario laboral con festivos y cierre de empresa entre el 24 de diciembre y el 1 de enero.
+
+Resultado final:
+
+* 25.000 pedidos generados.
+* 77.197 líneas de venta.
+* Dataset preparado para la fase ETL y construcción del modelo analítico.
+
+------------
+
+Mejora futura identificada:
+
+Incorporar una tabla de hechos logística (fact_repartos) para analizar la actividad de los repartidores.
+
+Posibles métricas:
+
+* Pedidos entregados por repartidor.
+* Tiempo medio de entrega.
+* Incidencias por repartidor.
+* Repartos por zona.
+* Repartos diarios.
+* Nivel de servicio.
+
+Esta mejora permitiría ampliar el modelo desde un enfoque comercial a un enfoque operativo y logístico.
+
+---------------
+
+
+18/06/2026
+
+
+Finalizada la generación de productividad y ausencias.
+
+Productividad:
+
+* Generada a partir de las ventas reales.
+* Agrupación por empleado y día.
+* Incluye pedidos gestionados, importe vendido, objetivo diario y porcentaje de cumplimiento.
+
+Ausencias:
+
+* Tipos de ausencia:
+
+  * Vacaciones
+  * Baja Médica
+  * Permiso
+  * Formación
+* Duraciones ajustadas a escenarios realistas.
+* Distribución ponderada por tipo de ausencia.
+
+Con esta fase se completa la generación de los tres hechos principales del modelo:
+
+* Ventas
+* Productividad
+* Ausencias
+
+El siguiente paso será finalizar el proceso ETL y poblar las tablas del área processed para construir el modelo estrella definitivo en Power BI.
