@@ -1,0 +1,29 @@
+producto_id,nombre_producto,categoria,marca,coste,precio_venta,margen_bruto_pct,popularidad,temporada_fuerte
+1,Pipas Original,Pipas,Grefusa,1.15,2.27,49.34,10,Todo el año
+2,Pipas Tijuana,Pipas,Grefusa,0.92,1.88,51.06,9,Todo el año
+3,Pipas Agua Sal,Pipas,Grefusa,0.94,2.51,62.55,8,Todo el año
+4,Pipas XXL,Pipas,Grefusa,1.15,2.04,43.63,5,Todo el año
+5,Pipas Gigantes,Pipas,Grefusa,0.79,2.19,63.93,5,Todo el año
+6,Almendras,Frutos Secos,Grefusa,2.27,5.2,56.35,5,Invierno
+7,Cacahuetes,Frutos Secos,Grefusa,2.33,4.06,42.61,5,Invierno
+8,Anacardos,Frutos Secos,Grefusa,2.41,4.1,41.22,5,Invierno
+9,Pistachos,Frutos Secos,Grefusa,1.63,4.51,63.86,5,Invierno
+10,Avellanas,Frutos Secos,Grefusa,1.51,2.73,44.69,5,Invierno
+11,Nueces,Frutos Secos,Grefusa,1.49,3.07,51.47,5,Invierno
+12,Gublins Jamón,Snacks,Grefusa,1.32,2.54,48.03,5,Todo el año
+13,Gublins Queso,Snacks,Grefusa,0.7,1.69,58.58,5,Todo el año
+14,Papa Delta Original,Snacks,Grefusa,1.79,2.97,39.73,5,Todo el año
+15,Papa Delta Campesinas,Snacks,Grefusa,1.66,4.1,59.51,5,Todo el año
+16,Papa Delta Barbacoa,Snacks,Grefusa,0.81,2.1,61.43,5,Todo el año
+17,Snack Mix,Snacks,Grefusa,1.2,2.85,57.89,5,Todo el año
+18,MisterCorn Original,MisterCorn,Grefusa,1.58,3.38,53.25,8,Todo el año
+19,MisterCorn BBQ,MisterCorn,Grefusa,1.26,2.13,40.85,7,Todo el año
+20,MisterCorn Picante,MisterCorn,Grefusa,1.26,2.98,57.72,5,Todo el año
+21,MisterCorn Queso,MisterCorn,Grefusa,1.44,3.52,59.09,5,Todo el año
+22,Cocktail,Mix,Grefusa,2.57,5.89,56.37,6,Navidad
+23,Mix Energy,Mix,Grefusa,2.71,5.17,47.58,5,Navidad
+24,Mix Premium,Mix,Grefusa,2.07,3.67,43.6,5,Navidad
+25,Mix Frutos Secos,Mix,Grefusa,2.3,3.77,38.99,5,Navidad
+26,Palomitas Mantequilla,Palomitas,Grefusa,0.56,1.47,61.9,5,Verano
+27,Palomitas Dulces,Palomitas,Grefusa,0.94,2.28,58.77,3,Verano
+28,Palomitas Saladas,Palomitas,Grefusa,0.68,1.22,44.26,5,Verano

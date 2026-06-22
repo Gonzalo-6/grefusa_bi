@@ -1,0 +1,31 @@
+empleado_id,nombre,apellido,sexo,fecha_nacimiento,fecha_alta,departamento_id,departamento,puesto,salario,estado
+1,Felicidad,Morata,Mujer,1997-12-20,2017-03-17,1,Dirección,Director General,47603.45,Activo
+2,Genoveva,Alcolea,Mujer,1984-08-22,2024-03-05,1,Dirección,Director General,53334.31,Activo
+3,Iris,Calleja,Mujer,1971-08-18,2014-04-04,2,RRHH,Técnico RRHH,29640.62,Activo
+4,Gloria,Amaya,Mujer,1984-11-27,2013-07-16,2,RRHH,Técnico RRHH,27668.49,Activo
+5,Dani,Prat,Hombre,1969-11-24,2025-11-20,3,Contabilidad,Contable,26832.32,Activo
+6,Maite,Vaquero,Mujer,1976-12-17,2024-05-03,3,Contabilidad,Contable,24072.59,Activo
+7,Macaria,Barrios,Mujer,1975-10-09,2020-05-27,3,Contabilidad,Contable,26888.7,Activo
+8,Perla,Arenas,Mujer,1991-12-25,2020-01-09,4,Ventas,Comercial,25161.77,Activo
+9,Carolina,Lopez,Mujer,1966-08-30,2022-04-25,4,Ventas,Comercial,22118.42,Activo
+10,Marcelino,Palacio,Hombre,1992-03-18,2013-06-12,4,Ventas,Comercial,39911.81,Activo
+11,Tristán,Laguna,Hombre,1995-01-22,2023-05-30,4,Ventas,Comercial,27531.39,Activo
+12,Manola,Larrañaga,Mujer,1986-06-20,2014-03-06,4,Ventas,Comercial,33397.42,Activo
+13,Bernarda,Gallo,Mujer,2005-04-06,2026-06-10,4,Ventas,Comercial,22842.57,Activo
+14,Azahara,Giménez,Mujer,2000-09-12,2020-03-13,4,Ventas,Comercial,28299.84,Activo
+15,Simón,Coello,Hombre,2004-09-21,2023-01-09,4,Ventas,Comercial,28825.24,Activo
+16,Baltasar,Navas,Hombre,1983-05-12,2011-12-10,4,Ventas,Comercial,29874.84,Activo
+17,Armando,Caparrós,Hombre,1976-07-15,2019-11-07,4,Ventas,Comercial,26384.68,Activo
+18,Fanny,Alegria,Mujer,1995-11-17,2013-02-02,5,Distribución,Repartidor,25438.62,Activo
+19,Candelaria,Ariza,Mujer,1969-02-16,2015-03-02,5,Distribución,Repartidor,29934.46,Activo
+20,Jesús,Palau,Hombre,2002-09-15,2011-09-15,5,Distribución,Repartidor,26021.9,Activo
+21,Paulina,Losada,Mujer,1973-05-27,2020-06-04,5,Distribución,Repartidor,21892.65,Activo
+22,Imelda,Gomis,Mujer,1971-08-06,2023-01-26,5,Distribución,Repartidor,22402.6,Activo
+23,Ignacia,Sans,Mujer,2000-04-10,2021-11-23,5,Distribución,Repartidor,26539.59,Activo
+24,Fortunato,Aragonés,Hombre,1975-06-08,2021-11-18,5,Distribución,Repartidor,28547.52,Activo
+25,Martín,Seguí,Hombre,1979-01-02,2022-03-03,5,Distribución,Repartidor,24809.85,Activo
+26,Mariana,Figuerola,Mujer,1993-02-08,2012-08-16,5,Distribución,Repartidor,22590.41,Activo
+27,Florencio,Barreda,Hombre,1973-12-13,2022-09-03,5,Distribución,Repartidor,27693.39,Baja
+28,Flora,Rivas,Mujer,1974-02-11,2020-03-01,6,Almacén,Mozo de almacén,22884.47,Activo
+29,Tito,Blasco,Hombre,1970-02-16,2019-04-22,6,Almacén,Mozo de almacén,20933.25,Activo
+30,Bautista,Criado,Hombre,2000-08-10,2024-01-15,6,Almacén,Mozo de almacén,21034.56,Activo
